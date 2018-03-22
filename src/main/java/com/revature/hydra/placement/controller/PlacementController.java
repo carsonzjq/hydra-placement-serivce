@@ -19,6 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.beans.Placement;
 import com.revature.hydra.placement.service.PlacementService;
 
+/**
+ * PlacementController where placement service is exposed.
+ * 
+ * @author JIAQI ZHANG
+ *
+ */
 @RestController
 @CrossOrigin
 @EnableAutoConfiguration
@@ -79,7 +85,7 @@ public class PlacementController {
 	 * @param placement to save
 	 * @return the response entity with saved placement
 	 */
-	@RequestMapping(value = "/all/placement/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/placement/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Placement> createPlacement(@Valid @RequestBody Placement placement) {
 		log.info("Saving placement: " + placement);
 		return new ResponseEntity<>(placementService.save(placement), HttpStatus.CREATED);
@@ -91,7 +97,7 @@ public class PlacementController {
 	 * @param placement to update
 	 * @return the response entity
 	 */
-	@RequestMapping(value = "/all/placement/update", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/placement/update", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Void> updatePlacement(@Valid @RequestBody Placement placement) {
 		log.info("Updating placement: " + placement);
 		placementService.update(placement);
@@ -104,7 +110,7 @@ public class PlacementController {
 	 * @param id 
 	 * @return the response entity
 	 */
-	@RequestMapping(value = "/all/placement/delete/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/placement/delete/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> deletePlacement(@PathVariable int id) {
 		Placement placement = new Placement();
 		placement.setPlacementId(id);

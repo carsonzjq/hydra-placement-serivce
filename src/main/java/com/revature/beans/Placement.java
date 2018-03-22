@@ -12,6 +12,12 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+/**
+ * Bean for the Placement table
+ * 
+ * @author JIAQI ZHANG
+ *
+ */
 @Entity
 @Table(name = "HYDRA_PLACEMENT")
 @Cacheable

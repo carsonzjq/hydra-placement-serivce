@@ -22,6 +22,12 @@ import com.revature.beans.Placement;
 import com.revature.hydra.placement.application.PlacementRepositoryServiceApplication;
 import com.revature.hydra.placement.data.PlacementRepository;
 
+/**
+ * Unit tests on methods of PlacementRepository class
+ * 
+ * @author JIAQI ZHANG
+ *
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = PlacementRepositoryServiceApplication.class)
 public class PlacementRepositoryTest {

@@ -12,6 +12,9 @@ import com.revature.hydra.placement.data.PlacementRepository;
  * PlacementService
  * 
  * Placement services implementation
+ * 
+ * @author JIAQI ZHANG
+ *
  */
 @Service
 public class PlacementService {
