@@ -1,4 +1,4 @@
-# hydra-placment-service
+# hydra-placement-service
 Fields in the Placement beans are as follows:
 * Placement
 	* Integer placementId
