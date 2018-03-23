@@ -30,5 +30,4 @@ public class PlacementRepositoryServiceApplication {
 		SpringApplication.run(PlacementRepositoryServiceApplication.class, args);
 	}
 	
-	
 }
