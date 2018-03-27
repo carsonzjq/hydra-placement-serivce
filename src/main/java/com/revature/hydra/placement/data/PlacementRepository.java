@@ -48,9 +48,9 @@ public interface PlacementRepository extends JpaRepository<Placement, Integer> {
 	/**
 	 * Find list of placements with specific endClientId
 	 * 
-	 * @param endClientid
+	 * @param endClientId
 	 * @return List of placements with given endClientId
 	 */
-	List<Placement> findAllByEndClientId(Integer endClientid);
+	List<Placement> findAllByEndClientId(Integer endClientId);
 
 }

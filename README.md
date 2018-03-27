@@ -13,6 +13,8 @@ The controller can perform the following functions:
 	* findOnePlacement(@PathVariable Integer id), via a GET to /one/placement/{id}
 	* findAllPlacement(), via a GET to /all/placement
 	* getPlacementsByAssociateId(@PathVariable Integer associateId), via a GET to /all/placement/getByAssociateId/{associateId}
+	* getPlacementsByClientId(@PathVariable Integer clientId), via a GET to /all/placement/getByClientId/{clientId}
+	* getPlacementsByEndClientId(@PathVariable Integer endClientId), via a GET to /all/placement/getByEndClientId/{endClientId}
 	* createPlacement(@Valid @RequestBody Placement placement), via a POST to /placement/create
 	* updatePlacement(@Valid @RequestBody Placement placement), via a PUT to /placement/update
 	* deletePlacement(@PathVariable int id), via a DELETE to /placement/delete/{id}

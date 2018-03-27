@@ -70,7 +70,7 @@ public class PlacementController {
 	 * Get all placements for certain associate
 	 * 
 	 * @param associateId
-	 * @return ResponseEntity that has the list of placement for specific associate
+	 * @return ResponseEntity that has the list of placements for specific associate
 	 */
 	@RequestMapping(value = "/all/placement/getByAssociateId/{associateId}", method = RequestMethod.GET)
 	public ResponseEntity<List<Placement>> getPlacementsByAssociateId(@PathVariable Integer associateId) {
@@ -80,10 +80,10 @@ public class PlacementController {
 	}
 	
 	/**
-	 * Get all placements for certain associate
+	 * Get all placements for certain client
 	 * 
-	 * @param associateId
-	 * @return ResponseEntity that has the list of placement for specific associate
+	 * @param clientId
+	 * @return ResponseEntity that has the list of placements for specific client
 	 */
 	@RequestMapping(value = "/all/placement/getByClientId/{clientId}", method = RequestMethod.GET)
 	public ResponseEntity<List<Placement>> getPlacementsByClientId(@PathVariable Integer clientId) {
@@ -92,6 +92,19 @@ public class PlacementController {
 		return new ResponseEntity<List<Placement>>(placements, HttpStatus.OK);
 	}
 
+	/**
+	 * Get all placements for certain end client
+	 * 
+	 * @param clientId
+	 * @return ResponseEntity that has the list of placements for specific end client
+	 */
+	@RequestMapping(value = "/all/placement/getByEndClientId/{endClientId}", method = RequestMethod.GET)
+	public ResponseEntity<List<Placement>> getPlacementsByEndClientId(@PathVariable Integer endClientId) {
+		log.info("Finding placement(s) with endClientId: " + endClientId);
+		List<Placement> placements = placementService.findAllByEndClientId(endClientId);
+		return new ResponseEntity<List<Placement>>(placements, HttpStatus.OK);
+	}
+	
 	/**
 	 * Create placement
 	 *
