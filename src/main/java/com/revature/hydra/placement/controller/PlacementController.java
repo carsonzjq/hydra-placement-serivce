@@ -78,6 +78,19 @@ public class PlacementController {
 		List<Placement> placements = placementService.findAllByAssociateId(associateId);
 		return new ResponseEntity<List<Placement>>(placements, HttpStatus.OK);
 	}
+	
+	/**
+	 * Get all placements for certain associate
+	 * 
+	 * @param associateId
+	 * @return ResponseEntity that has the list of placement for specific associate
+	 */
+	@RequestMapping(value = "/all/placement/getByClientId/{clientId}", method = RequestMethod.GET)
+	public ResponseEntity<List<Placement>> getPlacementsByClientId(@PathVariable Integer clientId) {
+		log.info("Finding placement(s) with clientId: " + clientId);
+		List<Placement> placements = placementService.findAllByClientId(clientId);
+		return new ResponseEntity<List<Placement>>(placements, HttpStatus.OK);
+	}
 
 	/**
 	 * Create placement
