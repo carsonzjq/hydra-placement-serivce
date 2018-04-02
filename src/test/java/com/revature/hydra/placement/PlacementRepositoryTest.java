@@ -39,6 +39,9 @@ public class PlacementRepositoryTest {
 
 	Placement testPlacement;
 
+	/**
+	 * Setup test environment for each test case.
+	 */
 	@Before
 	public void init() {
 		log.info("Initializing a test placement object for testing.");
@@ -46,14 +49,21 @@ public class PlacementRepositoryTest {
 		testPlacement = placementRepository.save(testPlacement);
 	}
 
+	/**
+	 * Clean up the changes made by every test.
+	 */
 	@After
-	public void teardown() {
+	public void tearDown() {
 		log.info("Tear down");
 		if (placementRepository.findOneByPlacementId(testPlacement.getPlacementId()) != null) {
 			placementRepository.delete(testPlacement);
 		}
 	}
 
+	
+	/**
+	 * Test adding a placement to database by placementRepository.save(placement)
+	 */
 	@Test
 	public void addPlacement() {
 		log.info("Test adding a placement.");
@@ -63,6 +73,9 @@ public class PlacementRepositoryTest {
 		assertTrue(placementRepository.findAll().contains(savedPlacement));
 	}
 
+	/**
+	 * Test getting a placement by placementId through placementRepository.findOneByPlacementId(placementId)
+	 */
 	@Test
 	public void findOneByPlacmentId() {
 		log.info("Test getting a placement by placementId.");
@@ -71,6 +84,9 @@ public class PlacementRepositoryTest {
 		assertEquals(testPlacement, placement);
 	}
 
+	/**
+	 * Test getting all placements by placementRepository.findAll()
+	 */
 	@Test
 	public void findAll() {
 		log.info("Test getting all placements.");
@@ -79,6 +95,9 @@ public class PlacementRepositoryTest {
 		assertFalse(placements.isEmpty());
 	}
 
+	/**
+	 * Test getting placements of a specific associate with given associateId by placementRepository.findAllByAssociateId(assocaiteId)
+	 */
 	@Test
 	public void findAllByAssociateId() {
 		log.info("Test getting placements by AssociateId");
@@ -88,6 +107,9 @@ public class PlacementRepositoryTest {
 		assertTrue(placements.contains(testPlacement));
 	}
 
+	/**
+	 * Test getting placements that assigned to a specific client by placementRepository.findAllByClientId(clientId)
+	 */
 	@Test
 	public void findAllByClientId() {
 		log.info("Test getting placements by ClientId");
@@ -97,6 +119,9 @@ public class PlacementRepositoryTest {
 		assertTrue(placements.contains(testPlacement));
 	}
 
+	/**
+	 * Test getting placements that assigned to a specific end client by placementRepository.findAllByEndClientId(endClientId)
+	 */
 	@Test
 	public void findAllByEndClientId() {
 		log.info("Test getting placements by EndClientId");
@@ -106,6 +131,9 @@ public class PlacementRepositoryTest {
 		assertTrue(placements.contains(testPlacement));
 	}
 
+	/**
+	 * Test updating an existing placement by placementRepository.save(placement)
+	 */
 	@Test
 	public void updatePlacement() {
 		log.info("Test updating a placement.");
@@ -115,6 +143,9 @@ public class PlacementRepositoryTest {
 		assertEquals(updatedPlacement.getAssociateId(), testPlacement.getAssociateId());
 	}
 
+	/**
+	 * Test deleting a placement by placementRepository.delete(placement)
+	 */
 	@Test
 	public void deletePlacement() {
 		log.info("Test deleting a placement.");

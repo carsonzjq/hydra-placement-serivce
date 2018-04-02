@@ -35,6 +35,13 @@ import com.revature.beans.Placement;
 import com.revature.hydra.placement.application.PlacementRepositoryServiceApplication;
 import com.revature.hydra.placement.data.PlacementRepository;
 
+/**
+ * Integrating test from controller layer to repository layer
+ * Use Spring MVC Test framework to stimulate end-point hitting
+ * 
+ * @author JIAQI ZHANG
+ *
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = PlacementRepositoryServiceApplication.class)
 public class PlacementControllerTest {
@@ -64,6 +71,10 @@ public class PlacementControllerTest {
 		assertNotNull("the JSON message converter must not be null", this.mappingJackson2HttpMessageConverter);
 	}
 
+	
+	/**
+	 * Setup test environment for each test case.
+	 */
 	@Before
 	public void init() {
 		log.info("Initializing a test placement object for testing.");
@@ -72,6 +83,9 @@ public class PlacementControllerTest {
 		this.mockMvc = webAppContextSetup(webApplicationContext).build();
 	}
 
+	/**
+	 * Remove possible changes made by test
+	 */
 	@After
 	public void tearDown() {
 		log.info("Tear down");
@@ -80,6 +94,12 @@ public class PlacementControllerTest {
 		}
 	}
 
+	
+	/**
+	 * Test getting a placement for a specific placementId by hitting end-point /one/placement/{id}
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	public void findOnePlacementTest() throws Exception {
 		log.info("Testing /one/placement/{id} endpoint...");
@@ -90,6 +110,11 @@ public class PlacementControllerTest {
 				.andExpect(jsonPath("$.associateId", is(testPlacement.getAssociateId())));
 	}
 
+	/**
+	 * Test getting all placements by hitting end-point /all/placement
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	public void findAllTest() throws Exception {
 		log.info("Testing /all/placement endpoint...");
@@ -97,6 +122,11 @@ public class PlacementControllerTest {
 				.andExpect(content().contentType(mediaTypeJson));
 	}
 	
+	/**
+	 * Test getting placements of an associate by hitting end-point /all/placement/getByAssociateId/{associateId}
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	public void getPlacementsByAssociateIdTest() throws Exception {
 		log.info("Testing /all/placement/getByAssociateId/{associateId} endpoint...");
@@ -105,6 +135,11 @@ public class PlacementControllerTest {
 				.andExpect(jsonPath("$.[*].associateId", everyItem(is(testPlacement.getAssociateId()))));
 	}
 	
+	/**
+	 * Test getting placements of a client by hitting end-point /all/placement/getByClientId/{clientId}
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	public void getPlacementsByClientIdTest() throws Exception {
 		log.info("Testing /all/placement/getByClientId/{clientId} endpoint...");
@@ -113,6 +148,11 @@ public class PlacementControllerTest {
 				.andExpect(jsonPath("$.[*].clientId", everyItem(is(testPlacement.getClientId()))));
 	}
 
+	/**
+	 * Test creating a placement by hitting end-point /placement/create
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	public void createPlacementTest() throws Exception {
 		log.info("Testing /placement/create endpoint...");
@@ -122,6 +162,11 @@ public class PlacementControllerTest {
 				.andExpect(status().isCreated());
 	}
 
+	/**
+	 * Test updating an existing placement by hitting end-point /placement/update
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	public void updatePlacementTest() throws Exception {
 		log.info("Testing /placement/update endpoint...");
@@ -130,8 +175,13 @@ public class PlacementControllerTest {
 				.andExpect(status().isNoContent());
 	}
 
+	/**
+	 * Test deleting a placement by hitting end-point /placement/delete/{id}
+	 * 
+	 * @throws Exception
+	 */
 	@Test
-	public void test7DeleteMs() throws Exception {
+	public void deletePlacementTest() throws Exception {
 		log.info("Testing /placement/delete/{id} endpoint...");
 		this.mockMvc.perform(delete("/placement/delete/" + testPlacement.getPlacementId()))
 				.andExpect(status().isNoContent());
